@@ -8,20 +8,20 @@
 Replace anything surrounded by the `< >` symbols._
 
 ## SUMMARY:
- < Provide a short description of your program's functionality. No more than a couple sentences. >
+ simple pygame using sprit methods, one hero, 3 villains
 #### Unique Feature
- < Describe the unique feature you added >
+ makes explosion appear when hero kills villain
 
 ## GRACE DAYS
-Grace days used for this assignment: < # >
+Grace days used for this assignment: < 3 >
 
-Grace days remaining: < # >/5
+Grace days remaining: < 1 >/5
 
 ## KNOWN BUGS AND INCOMPLETE PARTS:
- < What parts of the project you were not able to complete >
+ I couldnt figure out how to blit the explosion every time the hero kills a villain
 
 ## REFERENCES:
- < List any outside resources used >
+ CHAP 11
 
 ## MISCELLANEOUS COMMENTS:
- < Anything you would like the grader to know >
+ none

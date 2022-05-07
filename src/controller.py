@@ -3,6 +3,7 @@ import pygame
 import random
 from src import hero
 from src import enemy
+from src import explosion
 
 
 class Controller:
@@ -11,6 +12,7 @@ class Controller:
         self.width = width
         self.height = height
         self.screen = pygame.display.set_mode((self.width, self.height))
+        self.explosion = explosion.Explosion( 50, 80, "assets/explo.png")
         self.background = pygame.Surface(self.screen.get_size()).convert()
         self.background.fill((250, 250, 250))  # set the background to white
         pygame.font.init()  # you have to call this at the start, if you want to use this module.
@@ -22,8 +24,10 @@ class Controller:
         for i in range(num_enemies):
             x = random.randrange(100, 400)
             y = random.randrange(100, 400)
+            
             self.enemies.add(enemy.Enemy("Boogie", x, y, 'assets/enemy.png'))
         self.hero = hero.Hero("Conan", 50, 80, "assets/hero.png")
+        self.explosion = explosion.Explosion(50, 90, "assets/explo.png")
         self.all_sprites = pygame.sprite.Group((self.hero,) + tuple(self.enemies))
         self.state = "GAME"
 
@@ -33,7 +37,7 @@ class Controller:
                 self.gameLoop()
             elif(self.state == "GAMEOVER"):
                 self.gameOver()
-
+   
     def gameLoop(self):
         while self.state == "GAME":
             for event in pygame.event.get():
@@ -54,11 +58,22 @@ class Controller:
             if(fights):
                 for e in fights:
                     if(self.hero.fight(e)):
+                        
                         e.kill()
+                      
+                        
                         self.background.fill((250, 250, 250))
+                        self.explosion.blitty(self.background)
+                        
                     else:
                         self.background.fill((250, 0, 0))
                         self.enemies.add(e)
+
+               
+                
+      
+       
+               
 
             # redraw the entire screen
             self.enemies.update()
@@ -69,7 +84,7 @@ class Controller:
 
             # update the screen
             pygame.display.flip()
-
+  
     def gameOver(self):
         self.hero.kill()
         myfont = pygame.font.SysFont(None, 30)

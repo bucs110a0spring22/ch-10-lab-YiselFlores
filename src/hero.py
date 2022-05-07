@@ -18,8 +18,8 @@ class Hero(pygame.sprite.Sprite):
         self.rect.y = y
         #set other attributes
         self.name = name
-        self.speed = 3
-        self.health = 3
+        self.speed = 7
+        self.health = 8
 
     #methods to make moving our hero easier
     def move_up(self):
